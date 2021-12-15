@@ -28,6 +28,16 @@ const Club = db.define('club', {
     }
 });
 
+Member.belongsToMany(Club, { through: "member_club"});
+Club.belongsToMany(Member, { through: "member_club"});
+
+Member.belongsToMany(Book, { through: "member_book" });
+Book.belongsToMany(Member, { through: "member_book" });
+
+Book.belongsToMany(Club, { through: "book_club" });
+Club.belongsToMany(Book, { through: "book_club" });
+
+
 module.exports = {
     db,
     Member,
