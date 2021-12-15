@@ -25,8 +25,26 @@ const Book = db.define('book', {
 const Club = db.define('club', {
     name: {
         type: Sequelize.STRING
+    },
+    guildName: {
+        type: Sequelize.STRING
+    },
+    guildId: {
+        type: Sequelize.STRING,
+        unique: true
     }
 });
+
+const ClubBooks = db.define('book_club', {
+    queue: {
+        type: Sequelize.INTEGER,
+    },
+    current: {
+        type: Sequelize.BOOLEAN,
+        defualtValue: false
+    }
+})
+
 
 Member.belongsToMany(Club, { through: "member_club"});
 Club.belongsToMany(Member, { through: "member_club"});
@@ -40,7 +58,10 @@ Club.belongsToMany(Book, { through: "book_club" });
 
 module.exports = {
     db,
-    Member,
-    Book,
-    Club
+    Models: {
+        Member,
+        Book,
+        Club,
+        ClubBooks
+    }
 }
