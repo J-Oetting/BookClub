@@ -22,7 +22,9 @@ module.exports = {
                 }
             })
 
-            club.addMember(Member);
+            await club.addMember(member[0]);
+
+            await interaction.reply('Congrats! Youre part of the club!')
 
         } catch (e){
             await interaction.reply('Oops. Error joining, try again later.')
@@ -34,6 +36,6 @@ module.exports = {
 
         // console.log(interaction);
 
-        await interaction.reply(`Awesome! You are now in the club. Here is what we're reading:`)
+        //await interaction.reply(`Awesome! You are now in the club. Here is what we're reading:`)
     }
 }

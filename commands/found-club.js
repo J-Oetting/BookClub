@@ -10,29 +10,39 @@ module.exports = {
         const clubName = interaction.options.getString('name');
         const Club = Models.Club;
         const Member = Models.Member;
+        const MemberClub = Models.MemberClub;
 
         if (!clubName){
             await interaction.reply('Your club needs a name!');
             return
         }
 
-        console.log('ran')
         try {
-            const club = await Club.create({
-                name: clubName,
-                guildName: interaction.member.guild.name,
-                guildId: interaction.member.guild.id
+            let club = await Club.findOrCreate({
+                where: {
+                    guildId: interaction.member.guild.id
+                },
+                defaults: {
+                    name: clubName,
+                    guildName: interaction.member.guild.name,
+                }
             })
-
-            const member = await Member.findOrCreate({
+            
+            let member = await Member.findOrCreate({
                 where: {
                     username: `${interaction.user.username} ${interaction.user.discriminator}`
                 }
             })
+            
+            club = club[0];
+            member = member[0];
+
+            await club.addMember(member);
 
             await interaction.reply(`You've founded your book club!`)
         } catch (e){
             await interaction.reply('Couldnt create that club, sorry.')
+            console.error(e)
         }
     }
 }
