@@ -37,6 +37,12 @@ const Club = db.define('club', {
         type: Sequelize.STRING,
         unique: true
     },
+    meeting: {
+        type: Sequelize.STRING
+    },
+    link: {
+        type: Sequelize.TEXT
+    }
 });
 
 const ClubBooks = db.define('book_club', {
