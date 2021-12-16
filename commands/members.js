@@ -12,6 +12,11 @@ module.exports = {
                 guildId: interaction.member.guild.id
             }
         })
+
+        if (!club){
+            await interaction.reply(`You don't have a club yet! Use the /found-club command to create it.`);
+            return
+        }
         
         const members = await club.getMembers();
         let reply = [`Here are the members of ${club.dataValues.name}:`]

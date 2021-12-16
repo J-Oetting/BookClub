@@ -31,6 +31,12 @@ module.exports = {
                         guildId: interaction.member.guild.id
                     }
                 })
+            } else {
+                await Models.Club.update({ link: null }, {
+                    where: {
+                        guildId: interaction.member.guild.id
+                    }
+                })
             }
 
             await interaction.reply('Meeting set!')

@@ -20,6 +20,7 @@ module.exports = {
 
         if ( !title || !author){
             await interaction.reply(`You need the ${ title ? `author` : `title`} to add a book`);
+            return;
         }
 
         let book ;
@@ -48,7 +49,8 @@ module.exports = {
         }
 
         if (book[0].current){
-            interaction.reply(`We're alreay reading this, but thanks for contributing!`)
+            interaction.reply(`We're alreay reading this, but thanks for contributing!`);
+            return;
         }
 
         

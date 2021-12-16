@@ -22,6 +22,11 @@ module.exports = {
                 }
             })
 
+            if (!club){
+                await interaction.reply(`You don't have a club yet! Use the /found-club command to create it.`);
+                return
+            }
+
             await club.addMember(member[0]);
 
             await interaction.reply('Congrats! Youre part of the club!')
