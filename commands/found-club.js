@@ -6,7 +6,7 @@ module.exports = {
     .setName('found-club')
     .setDescription('Found the servers bookclub!')
     .addStringOption(option => option.setName('name').setDescription('whats the name of your club?')),
-    async execute(interaction){
+    async execute (interaction){
         const clubName = interaction.options.getString('name');
         const Club = Models.Club;
         const Member = Models.Member;
@@ -28,6 +28,10 @@ module.exports = {
                 }
             })
             
+            if (!club[1]){
+                await interaction.reply(`Your server already has a book club!`);
+                return
+            }
             let member = await Member.findOrCreate({
                 where: {
                     username: `${interaction.user.username} ${interaction.user.discriminator}`
@@ -38,10 +42,10 @@ module.exports = {
             member = member[0];
 
             await club.addMember(member);
-
+            
             await interaction.reply(`You've founded your book club!`)
         } catch (e){
-            await interaction.reply('Couldnt create that club, sorry.')
+            await interaction.reply(`Couldn't create that club, sorry.`)
             console.error(e)
         }
     }

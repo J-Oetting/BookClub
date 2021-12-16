@@ -1,6 +1,7 @@
+const { SlashCommandBuilder } = require("@discordjs/builders");
 const Sequelize = require("sequelize");
 
-const db = new Sequelize('postgres://postgres@localhost:5432/BookClub');
+const db = new Sequelize('postgres://postgres@localhost:5432/BookClub', { logging: false });
 
 const Member = db.define('member', {
     username: {
@@ -12,13 +13,16 @@ const Member = db.define('member', {
 const Book = db.define('book', {
     title: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
     },
     author: {
         type: Sequelize.STRING
     },
     isbn: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
+    },
+    search: {
+        type: Sequelize.STRING
     }
 });
 
@@ -32,7 +36,7 @@ const Club = db.define('club', {
     guildId: {
         type: Sequelize.STRING,
         unique: true
-    }
+    },
 });
 
 const ClubBooks = db.define('book_club', {
@@ -44,7 +48,6 @@ const ClubBooks = db.define('book_club', {
         defualtValue: false
     }
 })
-
 
 
 Member.belongsToMany(Club, { through: "member_club"});
