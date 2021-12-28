@@ -1,11 +1,11 @@
-const fs = require('fs');
+//const fs = require('fs');
 const { Client, Intents, Interaction, Collection } = require('discord.js');
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
 
-dotenv.config();
+// dotenv.config();
 
 const token = process.env.DISCORD_TOKEN;
-const client  = new Client({ intents: [Intents.FLAGS.GUILDS]});
+const client  = new Client(/* { intents: [Intents.FLAGS.GUILDS]} */);
 
 client.once('ready', () => {
     console.log('Ready!');
