@@ -2,11 +2,11 @@ const { db , Models } = require('./index');
 
 async function syncdb(){
     await db.sync({ force: true });
-    // try {
-    //     await seed();
-    // } catch (e){
-    //     console.error(e)
-    // }
+    try {
+        await seed();
+    } catch (e){
+        console.error(e)
+    }
     console.log('done with sync');
     await db.close();
     console.log('connection closed')

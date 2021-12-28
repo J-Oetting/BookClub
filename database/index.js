@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const Sequelize = require("sequelize");
 
-const db = new Sequelize('postgres://postgres@localhost:5432/BookClub', { logging: false });
+const db = new Sequelize('postgres://localhost:5432/BookClub', { logging: false });
 
 const Member = db.define('member', {
     username: {
