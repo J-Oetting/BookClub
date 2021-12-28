@@ -1,7 +1,8 @@
 {
   "name": "BookClub",
   "scripts": {
-    "seed": "node database/seed.js"
+    "seed": "node database/seed.js",
+    "start": "node index.js"
   },
   "dependencies": {
     "@discordjs/builders": "^0.9.0",
