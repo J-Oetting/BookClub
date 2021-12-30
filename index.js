@@ -1,8 +1,15 @@
 const fs = require('fs');
 const { Client, Intents, Interaction, Collection } = require('discord.js');
 const dotenv = require('dotenv');
+const { db } = require('./db/index');
 
 dotenv.config();
+
+const dbsync = async () => {
+    await db.sync();
+}
+
+dbsync();
 
 const token = process.env.DISCORD_TOKEN;
 const client  = new Client({ intents: [Intents.FLAGS.GUILDS]});
