@@ -3,7 +3,7 @@ const Sequelize = require("sequelize");
 
 const config = {
     logging: false,
-  };
+};
   
 if (process.env.LOGGING === "true") {
 delete config.logging;
@@ -15,9 +15,9 @@ if (process.env.DATABASE_URL) {
         rejectUnauthorized: false,
       },
     };
-  }
+}
 
-const db = new Sequelize( process.env.DATABASE_URL || 'postgres://localhost:5432/BookClub', { logging: false });
+const db = new Sequelize( process.env.DATABASE_URL || 'postgres://localhost:5432/BookClub', config);
 
 const Member = db.define('member', {
     username: {
