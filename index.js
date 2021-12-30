@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { Client, Intents, Interaction, Collection } = require('discord.js');
 const dotenv = require('dotenv');
-const { db } = require('./db/index');
+const { db } = require('./database/index');
 
 dotenv.config();
 
