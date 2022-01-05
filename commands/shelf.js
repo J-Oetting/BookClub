@@ -6,6 +6,11 @@ module.exports = {
     .setName('add-to-shelf')
     .setDescription('Add a book you want to read later to the club shelf. Only 5 books can be on the shelf at a given time.'),
     async execute(interaction){
-
+        
+        const book = await Models.Book.findOrCreate({
+            where: {
+                title: interaction
+            }
+        })
     }
 }
